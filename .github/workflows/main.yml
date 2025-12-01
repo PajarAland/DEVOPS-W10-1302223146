@@ -22,10 +22,11 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build and push
+      - name: Build and push image
         uses: docker/build-push-action@v6
         with:
           platforms: linux/amd64,linux/arm64
           push: true
           target: final
-          tags: ${{ vars.DOCKER_USERNAME }}/${{ github.event.repository.name | toLowerCase() }}:latest
+          # MUST be lowercase because Docker tags can't contain uppercase
+          tags: ${{ vars.DOCKER_USERNAME }}/devops-w10-1302223146:latest
